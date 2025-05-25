@@ -3,7 +3,15 @@
 import React, { useState } from 'react';
 import ChoiceButton from '../components/ChoiceButton';
 
-const questions = [
+interface Question {
+  question: string;
+  choices: Array<{
+    label: string;
+    isCorrect: boolean;
+  }>;
+}
+
+const questions: Question[] = [
   {
     question: "在急诊室，患者出现急性胸痛，以下哪项是最优先的处理？",
     choices: [
@@ -52,7 +60,7 @@ export default function Home() {
   };
 
   const currentQ = questions[currentQuestion];
-  const score = selectedAnswers.reduce((acc, answer, index) => {
+  const score = selectedAnswers.reduce((acc: number, answer: number, index: number) => {
     return acc + (questions[index].choices[answer]?.isCorrect ? 1 : 0);
   }, 0);
 
