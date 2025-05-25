@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 病人身体 -->
+  <rect x="24" y="32" width="16" height="24" fill="#e74c3c"/>
+  <!-- 病人头部 -->
+  <circle cx="32" cy="24" r="12" fill="#f1c40f"/>
+  <!-- 病床 -->
+  <rect x="16" y="48" width="32" height="8" fill="#95a5a6"/>
+  <!-- 痛苦表情 -->
+  <path d="M28 20 Q32 24 36 20" stroke="#000" stroke-width="2"/>
+  <circle cx="28" cy="18" r="2" fill="#000"/>
+  <circle cx="36" cy="18" r="2" fill="#000"/>
+</svg> 

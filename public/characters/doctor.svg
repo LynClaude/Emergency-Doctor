@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 医生身体 -->
+  <rect x="24" y="32" width="16" height="24" fill="#4a90e2"/>
+  <!-- 医生头部 -->
+  <circle cx="32" cy="24" r="12" fill="#ffd700"/>
+  <!-- 听诊器 -->
+  <path d="M32 36 L32 44" stroke="#000" stroke-width="2"/>
+  <circle cx="32" cy="44" r="4" fill="#fff" stroke="#000" stroke-width="2"/>
+  <!-- 医生帽子 -->
+  <path d="M20 24 L44 24 L42 16 L22 16 Z" fill="#fff"/>
+</svg> 
