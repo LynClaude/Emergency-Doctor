@@ -7,7 +7,7 @@ interface Character {
   y: number;
   width: number;
   height: number;
-  image: HTMLImageElement;
+  imageSrc: string;
   type: 'doctor' | 'patient' | 'nurse';
   state: 'idle' | 'walking' | 'treating' | 'talking';
 }
@@ -23,7 +23,7 @@ const GameScene: React.FC<GameSceneProps> = ({ onAction }) => {
     y: 300,
     width: 64,
     height: 64,
-    image: new Image(),
+    imageSrc: '/characters/doctor.svg',
     type: 'doctor',
     state: 'idle'
   });
@@ -33,16 +33,10 @@ const GameScene: React.FC<GameSceneProps> = ({ onAction }) => {
     y: 300,
     width: 64,
     height: 64,
-    image: new Image(),
+    imageSrc: '/characters/patient.svg',
     type: 'patient',
     state: 'idle'
   });
-
-  // 加载角色图片
-  useEffect(() => {
-    doctor.image.src = '/characters/doctor.png';
-    patient.image.src = '/characters/patient.png';
-  }, []);
 
   // 游戏主循环
   useEffect(() => {
@@ -51,6 +45,11 @@ const GameScene: React.FC<GameSceneProps> = ({ onAction }) => {
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+
+    const doctorImage = new Image();
+    const patientImage = new Image();
+    doctorImage.src = doctor.imageSrc;
+    patientImage.src = patient.imageSrc;
 
     const gameLoop = () => {
       // 清空画布
@@ -64,8 +63,24 @@ const GameScene: React.FC<GameSceneProps> = ({ onAction }) => {
       drawEquipment(ctx);
 
       // 绘制角色
-      drawCharacter(ctx, doctor);
-      drawCharacter(ctx, patient);
+      if (doctorImage.complete) {
+        ctx.drawImage(
+          doctorImage,
+          doctor.x,
+          doctor.y,
+          doctor.width,
+          doctor.height
+        );
+      }
+      if (patientImage.complete) {
+        ctx.drawImage(
+          patientImage,
+          patient.x,
+          patient.y,
+          patient.width,
+          patient.height
+        );
+      }
 
       // 继续下一帧
       requestAnimationFrame(gameLoop);
@@ -92,19 +107,6 @@ const GameScene: React.FC<GameSceneProps> = ({ onAction }) => {
     ctx.fillRect(200, 200, 20, 100);
     ctx.fillStyle = '#fff';
     ctx.fillText('输液架', 180, 250);
-  };
-
-  // 绘制角色
-  const drawCharacter = (ctx: CanvasRenderingContext2D, character: Character) => {
-    if (character.image.complete) {
-      ctx.drawImage(
-        character.image,
-        character.x,
-        character.y,
-        character.width,
-        character.height
-      );
-    }
   };
 
   // 处理键盘输入
